@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>N & T CORPORATION - Wholesale E-Commerce</title>
+    <title>N & T CORPORATION - Premier Wholesale Supplier</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -17,14 +17,14 @@
                     colors: {
                         brand: {
                             blue: '#1E3A8A',
+                            navy: '#0F172A',
                             gold: '#D97706',
                             goldLight: '#F59E0B',
-                            dark: '#0F172A',
                             light: '#F8FAFC'
                         }
                     },
                     fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'Hind Siliguri', 'sans-serif']
+                        sans: ['Plus Jakarta Sans', 'sans-serif']
                     }
                 }
             }
@@ -33,176 +33,273 @@
     <style>
         .glass-header {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
         }
         .hero-bg {
-            background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%);
+            background: radial-gradient(circle at top right, #1e3a8a 0%, #0f172a 60%, #030712 100%);
         }
         .gradient-text {
-            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            background: linear-gradient(135deg, #FBBF24 0%, #D97706 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #FBBF24 0%, #D97706 100%);
+        }
+        
+        /* Modern Keyframe Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-float {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+        .animate-pulse-glow {
+            animation: pulseGlow 4s ease-in-out infinite;
+        }
+        .animate-fade-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px -10px rgba(30, 58, 138, 0.15);
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-slate-800 font-sans min-h-screen flex flex-col">
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col antialiased">
 
-    <!-- Top Contact Bar -->
-    <div class="bg-brand-dark text-white text-xs py-2 px-4 flex justify-between items-center border-b border-slate-800">
-        <div class="container mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <span><i class="fa-solid fa-phone text-brand-gold mr-1"></i> 01712051897, 01857047777</span>
-                <span class="hidden md:inline"><i class="fa-solid fa-truck text-brand-gold mr-1"></i> sara bangladeshe wholesale supply</span>
+    <!-- Top Announcement Bar -->
+    <div class="bg-brand-navy text-slate-300 text-xs py-2.5 px-4 border-b border-slate-800/80">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-3">
+                <span class="bg-brand-gold text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">Wholesale Hub</span>
+                <span class="text-slate-300 font-medium">Nationwide Bulk Distributor in Bangladesh</span>
             </div>
-            <div>
-                <button onclick="openAdminModal()" class="hover:text-brand-gold transition-colors flex items-center gap-1 font-semibold">
-                    <i class="fa-solid fa-user-shield"></i> Admin Panel
+            <div class="flex items-center gap-5 text-xs font-semibold">
+                <a href="tel:01712051897" class="hover:text-brand-goldLight transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-brand-goldLight"></i> 01712051897
+                </a>
+                <a href="tel:01857047777" class="hover:text-brand-goldLight transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-phone text-brand-goldLight"></i> 01857047777
+                </a>
+                <button onclick="openAdminModal()" class="ml-2 text-brand-goldLight hover:text-white transition flex items-center gap-1">
+                    <i class="fa-solid fa-lock"></i> Admin Login
                 </button>
             </div>
         </div>
     </div>
 
     <!-- Main Navigation Header -->
-    <header class="sticky top-0 z-40 glass-header shadow-sm border-b border-slate-100">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <!-- Brand Logo (Bigger Display) -->
+    <header class="sticky top-0 z-40 glass-header shadow-sm border-b border-slate-200/80 transition-all">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            
+            <!-- Brand Logo (Extra Large Container for uploaded logo) -->
             <div class="flex items-center gap-4">
-                <div id="headerLogoContainer" class="h-16 flex items-center justify-center">
-                    <!-- Dynamic Logo loads here with larger size -->
+                <div id="headerLogoContainer" class="h-24 md:h-28 min-w-[100px] flex items-center justify-center transition-all duration-300">
+                    <!-- Dynamic Logo rendered via JS -->
                 </div>
                 <div>
-                    <h1 class="font-extrabold text-2xl tracking-tight text-brand-blue leading-tight">N & T CORPORATION</h1>
-                    <p class="text-xs text-slate-500 font-medium">Wholesale Milk, Tea & Water Supplier</p>
+                    <h1 class="font-black text-2xl md:text-3xl tracking-tight text-brand-blue leading-none">
+                        N & T <span class="gradient-text">CORPORATION</span>
+                    </h1>
+                    <p class="text-xs md:text-sm text-slate-500 font-semibold tracking-wider uppercase mt-1">Wholesale Milk, Tea, Water & Condensed Milk</p>
                 </div>
             </div>
 
             <!-- Header Actions -->
             <div class="flex items-center gap-3">
-                <a href="https://wa.me/8801712051897" target="_blank" class="bg-green-600 hover:bg-green-700 text-white text-xs md:text-sm px-4 py-2.5 rounded-lg font-semibold flex items-center gap-2 shadow-sm transition">
-                    <i class="fa-brands fa-whatsapp text-base"></i> <span class="hidden sm:inline">WhatsApp Order</span>
+                <a href="https://wa.me/8801712051897?text=Hello%20N%26T%20Corporation,%20I%20want%20to%20inquire%20about%20wholesale%20products." target="_blank" 
+                   class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs md:text-sm px-5 py-3 rounded-xl font-bold flex items-center gap-2 shadow-lg shadow-emerald-600/20 hover:scale-105 transition transform">
+                    <i class="fa-brands fa-whatsapp text-lg"></i> 
+                    <span class="hidden sm:inline">Bulk WhatsApp Inquiry</span>
                 </a>
             </div>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-bg text-white py-12 px-4 relative overflow-hidden">
-        <div class="container mx-auto max-w-5xl text-center relative z-10">
-            <span class="inline-block bg-brand-gold/20 text-brand-goldLight text-xs px-3 py-1 rounded-full font-semibold mb-3 border border-brand-gold/30">
-                Premium Wholesale Distributor
-            </span>
-            <h2 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight">
-                Quality product er nirboroshil <br><span class="gradient-text">Paikari Poribeshok</span>
+    <!-- Animated Hero Section -->
+    <section class="hero-bg text-white py-16 md:py-24 px-4 relative overflow-hidden">
+        <!-- Floating Ambient Glows -->
+        <div class="absolute top-10 left-10 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl animate-pulse-glow" style="animation-delay: 2s;"></div>
+
+        <div class="container mx-auto max-w-5xl text-center relative z-10 animate-fade-in">
+            <div class="inline-flex items-center gap-2 bg-slate-800/80 border border-amber-500/30 text-amber-400 text-xs px-4 py-1.5 rounded-full font-semibold mb-6 shadow-xl backdrop-blur-md">
+                <i class="fa-solid fa-award"></i> Premier Wholesale & Direct Import Supplier
+            </div>
+            
+            <h2 class="text-3xl sm:text-5xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
+                Your Direct Wholesale Partner for <br>
+                <span class="gradient-text">Essential Commodities</span>
             </h2>
-            <p class="text-slate-300 max-w-2xl mx-auto text-sm md:text-base mb-6">
-                Milk Powder, Tea, Drinking Water o Condensed Milk er shorashori wholesale distributor. Shera dame paikari order er jonyo jogajog korun.
+            
+            <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base md:text-lg mb-8 leading-relaxed font-light">
+                Supplying authentic Milk Powder, Premium Grade Tea, Purified Mineral Water, and Sweetened Condensed Milk across Bangladesh with fast dispatch.
             </p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <a href="#products" class="bg-brand-gold hover:bg-amber-600 text-white px-6 py-2.5 rounded-lg font-bold text-sm shadow-lg transition">
-                    Product Catalog Dekhun
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#products" class="gold-gradient-bg text-slate-950 px-8 py-3.5 rounded-xl font-extrabold text-sm shadow-xl hover:shadow-amber-500/20 hover:scale-105 transition transform flex items-center gap-2">
+                    <i class="fa-solid fa-boxes-stacked"></i> Browse Catalog
                 </a>
-                <a href="tel:01712051897" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-6 py-2.5 rounded-lg font-semibold text-sm transition">
-                    <i class="fa-solid fa-phone mr-1"></i> Call Korun
+                <a href="tel:01712051897" class="bg-slate-800/90 hover:bg-slate-800 text-white border border-slate-700 px-8 py-3.5 rounded-xl font-bold text-sm transition flex items-center gap-2">
+                    <i class="fa-solid fa-phone text-amber-400"></i> Call Sales: 01712051897
                 </a>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-10 border-t border-slate-800/80 text-left">
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80 backdrop-blur-sm animate-float">
+                    <i class="fa-solid fa-shield-halved text-amber-400 text-xl mb-2"></i>
+                    <h4 class="font-bold text-white text-xs sm:text-sm">100% Authentic</h4>
+                    <p class="text-slate-400 text-[11px] mt-0.5">Guaranteed quality products</p>
+                </div>
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80 backdrop-blur-sm animate-float" style="animation-delay: 1s;">
+                    <i class="fa-solid fa-truck-fast text-blue-400 text-xl mb-2"></i>
+                    <h4 class="font-bold text-white text-xs sm:text-sm">Fast Logistics</h4>
+                    <p class="text-slate-400 text-[11px] mt-0.5">Nationwide cargo delivery</p>
+                </div>
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80 backdrop-blur-sm animate-float" style="animation-delay: 2s;">
+                    <i class="fa-solid fa-tags text-emerald-400 text-xl mb-2"></i>
+                    <h4 class="font-bold text-white text-xs sm:text-sm">Wholesale Rates</h4>
+                    <p class="text-slate-400 text-[11px] mt-0.5">Best bulk order pricing</p>
+                </div>
+                <div class="bg-slate-900/60 p-4 rounded-xl border border-slate-800/80 backdrop-blur-sm animate-float" style="animation-delay: 3s;">
+                    <i class="fa-solid fa-headset text-purple-400 text-xl mb-2"></i>
+                    <h4 class="font-bold text-white text-xs sm:text-sm">Dedicated Support</h4>
+                    <p class="text-slate-400 text-[11px] mt-0.5">Direct phone & WhatsApp line</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content Container -->
-    <main class="container mx-auto px-4 py-8 flex-1" id="products">
-        <!-- Filter Categories & Search Bar -->
-        <div class="flex flex-col md:flex-row justify-between items-center gap-4 mb-8">
-            <div class="flex flex-wrap gap-2 w-full md:w-auto" id="categoryFilter">
-                <button onclick="filterCategory('All')" class="cat-btn active bg-brand-blue text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm">All Products</button>
-                <button onclick="filterCategory('Milk Powder')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate-50">Milk Powder</button>
-                <button onclick="filterCategory('Tea')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate-50">Tea</button>
-                <button onclick="filterCategory('Mineral Water')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate-50">Mineral Water</button>
-                <button onclick="filterCategory('Condensed Milk')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate-50">Condensed Milk</button>
+    <!-- Main Catalog Section -->
+    <main class="container mx-auto px-4 py-12 flex-1" id="products">
+        
+        <!-- Section Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-10">
+            <div>
+                <span class="text-xs font-bold text-brand-gold uppercase tracking-widest">Wholesale Catalog</span>
+                <h2 class="text-2xl sm:text-4xl font-black text-brand-navy mt-1">Explore Commercial Stock</h2>
+                <p class="text-slate-500 text-sm mt-1">Filter by category or search directly for your required bulk commodities.</p>
             </div>
-            
-            <div class="relative w-full md:w-64">
-                <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Product khujun..." class="w-full pl-9 pr-4 py-2 text-xs border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-blue/20">
-                <i class="fa-solid fa-search absolute left-3 top-2.5 text-slate-400 text-xs"></i>
+
+            <!-- Search Bar -->
+            <div class="relative w-full md:w-72">
+                <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="Search product name..." 
+                    class="w-full pl-10 pr-4 py-2.5 text-xs bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue/30 shadow-sm transition">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-400 text-xs"></i>
             </div>
         </div>
 
-        <!-- Product Grid -->
+        <!-- Filter Category Tabs -->
+        <div class="flex flex-wrap gap-2 mb-8" id="categoryFilter">
+            <button onclick="filterCategory('All')" class="cat-btn active bg-brand-blue text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-sm transition">All Products</button>
+            <button onclick="filterCategory('Milk Powder')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-slate-100 transition">Milk Powder</button>
+            <button onclick="filterCategory('Tea')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-slate-100 transition">Tea</button>
+            <button onclick="filterCategory('Mineral Water')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-slate-100 transition">Mineral Water</button>
+            <button onclick="filterCategory('Condensed Milk')" class="cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-slate-100 transition">Condensed Milk</button>
+        </div>
+
+        <!-- Product Cards Grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="productGrid">
-            <!-- Dynamic Cards Generated by JavaScript -->
+            <!-- Dynamic Cards Generated by JS -->
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brand-dark text-slate-400 text-xs py-8 px-4 border-t border-slate-800">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    <footer class="bg-brand-navy text-slate-400 text-xs py-12 px-4 border-t border-slate-800">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
-                <h3 class="text-white font-bold text-base mb-2">N & T CORPORATION</h3>
-                <p class="leading-relaxed">Aponar business er bisshosto paikari sorborohokari protishthan. Shorbochcho gunagun nischit kore product delivery kora hoy.</p>
+                <h3 class="text-white font-extrabold text-base mb-3">N & T CORPORATION</h3>
+                <p class="leading-relaxed text-slate-400">
+                    Leading bulk importer and wholesale distributor of Milk Powder, Premium Tea, Mineral Water, and Sweetened Condensed Milk in Bangladesh.
+                </p>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-2">Jogajog er Number</h4>
-                <p class="mb-1"><i class="fa-solid fa-phone text-brand-gold mr-1"></i> 01712051897</p>
-                <p><i class="fa-solid fa-phone text-brand-gold mr-1"></i> 01857047777</p>
+                <h4 class="text-white font-bold text-sm mb-3">Direct Contact Hotline</h4>
+                <p class="mb-1.5 flex items-center gap-2"><i class="fa-solid fa-phone text-brand-gold"></i> <a href="tel:01712051897" class="hover:text-white">01712051897</a></p>
+                <p class="mb-1.5 flex items-center gap-2"><i class="fa-solid fa-phone text-brand-gold"></i> <a href="tel:01857047777" class="hover:text-white">01857047777</a></p>
+                <p class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-emerald-400"></i> <a href="https://wa.me/8801712051897" target="_blank" class="hover:text-white">WhatsApp Inquiry (+8801712051897)</a></p>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-2">Product List</h4>
-                <p>Milk Powder, Tea, Mineral Water, Condensed Milk</p>
+                <h4 class="text-white font-bold text-sm mb-3">Commodity Lineup</h4>
+                <p class="leading-relaxed">Instant Full Cream Milk Powder (25kg Bags), Bulk Black Tea, Purified Drinking Water, Sweetened Condensed Milk Cases.</p>
             </div>
         </div>
-        <div class="container mx-auto text-center mt-6 pt-6 border-t border-slate-800 text-slate-500">
-            &copy; 2026 N & T CORPORATION. All Rights Reserved.
+        <div class="container mx-auto text-center mt-10 pt-6 border-t border-slate-800/80 text-slate-500">
+            &copy; 2026 N & T CORPORATION. All Wholesale Rights Reserved.
         </div>
     </footer>
 
-    <!-- Admin Modal -->
-    <div id="adminModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden">
+    <!-- Admin Panel Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4 animate-fade-in">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col overflow-hidden border border-slate-200">
             <!-- Modal Header -->
             <div class="p-4 bg-brand-blue text-white flex justify-between items-center">
-                <h3 class="font-bold flex items-center gap-2"><i class="fa-solid fa-shield-halved"></i> Admin Control Panel</h3>
-                <button onclick="closeAdminModal()" class="text-white/80 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+                <h3 class="font-bold text-sm flex items-center gap-2">
+                    <i class="fa-solid fa-shield-halved"></i> Admin Management Portal
+                </h3>
+                <button onclick="closeAdminModal()" class="text-white/80 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
-            <!-- Modal Content (Dynamic Login or Admin Form) -->
+            <!-- Modal Content (Login or Admin Dashboard) -->
             <div class="p-6 overflow-y-auto flex-1" id="adminModalContent">
-                <!-- Injected via Javascript -->
+                <!-- Injected dynamically -->
             </div>
         </div>
     </div>
 
     <!-- Application JavaScript Logic -->
     <script>
-        // Initial Products Data
+        // Initial Default Commodities
         const initialProducts = [
-            { id: 1, title: 'Full Cream Milk Powder (25kg Bag)', category: 'Milk Powder', price: 'Wholesale Quote', image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=500&q=80', desc: 'Premium imported instant full cream milk powder for commercial use.' },
-            { id: 2, title: 'Grade-A Pekoe Black Tea Bulk', category: 'Tea', price: 'Bulk Wholesale Rates', image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&q=80', desc: 'Aromatic Sylhet origin Pekoe & BOP blend tea in bulk sacks.' },
-            { id: 3, title: 'Purified Mineral Water Case (1.5L x 12)', category: 'Mineral Water', price: 'Carton Discounts Available', image: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=500&q=80', desc: 'Standard mineral water bottles, 12 pcs carton with lab certification.' },
-            { id: 4, title: 'Sweetened Condensed Milk (390g x 48)', category: 'Condensed Milk', price: 'Wholesale Rates', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=500&q=80', desc: 'Rich creamy condensed milk, full carton containing 48 tins.' }
+            { id: 1, title: 'Full Cream Milk Powder (25kg Bag)', category: 'Milk Powder', price: 'Wholesale Quote Available', image: 'https://images.unsplash.com/photo-1550583724-b2692b85b150?w=600&q=80', desc: 'Premium imported instant full cream milk powder for commercial and industrial use.' },
+            { id: 2, title: 'Grade-A Pekoe Black Tea Bulk', category: 'Tea', price: 'Bulk Wholesale Pricing', image: 'https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=600&q=80', desc: 'Aromatic Pekoe & BOP blend tea in 50kg commercial bulk sacks.' },
+            { id: 3, title: 'Purified Mineral Water Case (1.5L x 12)', category: 'Mineral Water', price: 'Carton Discounts Available', image: 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=600&q=80', desc: 'Purified mineral water bottles, 12 pcs per case with quality certification.' },
+            { id: 4, title: 'Sweetened Condensed Milk (390g x 48)', category: 'Condensed Milk', price: 'Wholesale Carton Rates', image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&q=80', desc: 'Rich creamy sweetened condensed milk, full carton containing 48 tins.' }
         ];
 
         let products = JSON.parse(localStorage.getItem('nt_products')) || initialProducts;
         let companyLogo = localStorage.getItem('nt_company_logo') || '';
         let activeCategory = 'All';
         let isLoggedIn = localStorage.getItem('nt_admin_logged_in') === 'true';
-        let selectedImageData = '';
+        let selectedProductImageData = '';
 
-        // Save Data to LocalStorage
+        // Save State
         function saveProducts() {
             localStorage.setItem('nt_products', JSON.stringify(products));
         }
 
+        // Render Large Header Logo
         function renderLogo() {
             const logoContainer = document.getElementById('headerLogoContainer');
             if (companyLogo) {
-                logoContainer.innerHTML = `<img src="${companyLogo}" alt="Company Logo" class="max-h-16 w-auto object-contain py-1">`;
+                logoContainer.innerHTML = `<img src="${companyLogo}" alt="N & T Corporation Logo" class="h-24 md:h-28 w-auto object-contain py-1 transition-all">`;
             } else {
                 logoContainer.innerHTML = `
-                    <div class="w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center text-brand-gold font-bold text-xl border-2 border-brand-gold">
+                    <div class="w-16 h-16 rounded-2xl bg-brand-blue flex items-center justify-center text-brand-gold font-black text-2xl border-2 border-brand-gold shadow-md">
                         N&T
                     </div>`;
             }
         }
 
+        // Render Product Cards
         function renderProducts() {
             const grid = document.getElementById('productGrid');
             const searchVal = document.getElementById('searchInput').value.toLowerCase();
@@ -215,41 +312,52 @@
             });
 
             if(filtered.length === 0) {
-                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-400">Kono product paowa jayni.</div>`;
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-16 bg-white rounded-2xl border border-slate-200">
+                        <i class="fa-solid fa-box-open text-4xl text-slate-300 mb-3"></i>
+                        <p class="text-slate-500 font-medium text-sm">No wholesale products found matching your search.</p>
+                    </div>`;
                 return;
             }
 
             filtered.forEach(p => {
                 grid.innerHTML += `
-                    <div class="bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden flex flex-col hover:shadow-md transition">
-                        <div class="h-44 bg-slate-100 relative overflow-hidden">
-                            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover">
-                            <span class="absolute top-2 left-2 bg-brand-blue/80 text-white text-[10px] px-2 py-0.5 rounded font-semibold backdrop-blur-sm">${p.category}</span>
+                    <div class="product-card bg-white rounded-2xl border border-slate-200/80 overflow-hidden flex flex-col justify-between shadow-sm">
+                        <div>
+                            <div class="h-48 bg-slate-100 relative overflow-hidden">
+                                <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/600x400/1e3a8a/ffffff?text=N%26T+Corporation'">
+                                <span class="absolute top-3 left-3 bg-brand-navy/90 text-amber-400 text-[10px] font-bold px-2.5 py-1 rounded-full backdrop-blur-md">
+                                    ${p.category}
+                                </span>
+                            </div>
+                            <div class="p-5">
+                                <h3 class="font-bold text-slate-900 text-base leading-snug mb-2">${p.title}</h3>
+                                <p class="text-slate-500 text-xs leading-relaxed mb-4 line-clamp-2">${p.desc}</p>
+                            </div>
                         </div>
-                        <div class="p-4 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-bold text-slate-800 text-sm mb-1">${p.title}</h3>
-                                <p class="text-slate-500 text-xs mb-3 line-clamp-2">${p.desc}</p>
-                            </div>
-                            <div>
-                                <span class="block text-xs font-semibold text-brand-gold bg-amber-50 px-2 py-1 rounded w-max mb-3">${p.price}</span>
-                                <a href="https://wa.me/8801712051897?text=Hello,%20I%20want%20wholesale%20quote%20for:%20${encodeURIComponent(p.title)}" target="_blank" class="w-full bg-brand-blue hover:bg-blue-900 text-white text-xs font-bold py-2 rounded-lg text-center block transition">
-                                    <i class="fa-brands fa-whatsapp mr-1"></i> Wholesale Inquiry
-                                </a>
-                            </div>
+                        <div class="px-5 pb-5 pt-0">
+                            <span class="block text-xs font-bold text-brand-gold bg-amber-50 border border-amber-100 px-2.5 py-1 rounded-lg w-max mb-3">
+                                ${p.price}
+                            </span>
+                            <a href="https://wa.me/8801712051897?text=Hello%20N%26T%20Corporation,%20I%20want%20wholesale%20quote%20for:%20${encodeURIComponent(p.title)}" 
+                               target="_blank" 
+                               class="w-full bg-brand-blue hover:bg-navy-900 text-white text-xs font-bold py-2.5 rounded-xl text-center block transition flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> Wholesale Inquiry
+                            </a>
                         </div>
                     </div>
                 `;
             });
         }
 
+        // Category Filter
         function filterCategory(cat) {
             activeCategory = cat;
             document.querySelectorAll('.cat-btn').forEach(btn => {
                 if(btn.innerText.includes(cat)) {
-                    btn.className = 'cat-btn active bg-brand-blue text-white text-xs font-semibold px-4 py-2 rounded-full shadow-sm';
+                    btn.className = 'cat-btn active bg-brand-blue text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-sm transition';
                 } else {
-                    btn.className = 'cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-semibold px-4 py-2 rounded-full hover:bg-slate-50';
+                    btn.className = 'cat-btn bg-white border border-slate-200 text-slate-700 text-xs font-bold px-5 py-2.5 rounded-xl hover:bg-slate-100 transition';
                 }
             });
             renderProducts();
@@ -259,7 +367,7 @@
             renderProducts();
         }
 
-        // Admin Modal Controls
+        // Admin Modal Functions
         function openAdminModal() {
             document.getElementById('adminModal').classList.remove('hidden');
             renderAdminModalContent();
@@ -269,7 +377,7 @@
             document.getElementById('adminModal').classList.add('hidden');
         }
 
-        function handleLogin(e) {
+        function handleAdminLogin(e) {
             e.preventDefault();
             const u = document.getElementById('loginUser').value;
             const p = document.getElementById('loginPass').value;
@@ -279,16 +387,17 @@
                 localStorage.setItem('nt_admin_logged_in', 'true');
                 renderAdminModalContent();
             } else {
-                alert('Bhul Username athoba Password!');
+                alert('Invalid Username or Password! (Default: admin / 123456)');
             }
         }
 
-        function handleLogout() {
+        function handleAdminLogout() {
             isLoggedIn = false;
             localStorage.setItem('nt_admin_logged_in', 'false');
             renderAdminModalContent();
         }
 
+        // Handle File Select for Company Logo
         function handleLogoSelect(event) {
             const file = event.target.files[0];
             if (file) {
@@ -303,14 +412,22 @@
             }
         }
 
-        function handleImageSelect(event) {
+        function removeLogo() {
+            companyLogo = '';
+            localStorage.removeItem('nt_company_logo');
+            renderLogo();
+            renderAdminModalContent();
+        }
+
+        // Handle File Select for Product Image
+        function handleProductImageSelect(event) {
             const file = event.target.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    selectedImageData = e.target.result;
-                    document.getElementById('imagePreview').src = selectedImageData;
-                    document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                    selectedProductImageData = e.target.result;
+                    document.getElementById('productImagePreview').src = selectedProductImageData;
+                    document.getElementById('productImagePreviewContainer').classList.remove('hidden');
                 };
                 reader.readAsDataURL(file);
             }
@@ -324,7 +441,7 @@
             const urlImg = document.getElementById('prodUrlImage').value;
             const desc = document.getElementById('prodDesc').value;
 
-            const finalImage = selectedImageData || urlImg || 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=500&q=80';
+            const finalImage = selectedProductImageData || urlImg || 'https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=600&q=80';
 
             const newProd = {
                 id: Date.now(),
@@ -339,11 +456,12 @@
             saveProducts();
             renderProducts();
             renderAdminModalContent();
-            selectedImageData = '';
+            selectedProductImageData = '';
+            alert('New wholesale product published successfully!');
         }
 
         function deleteProduct(id) {
-            if(confirm('Apni ki nischit ei product ti muche felte chan?')) {
+            if(confirm('Are you sure you want to remove this product from the catalog?')) {
                 products = products.filter(p => p.id !== id);
                 saveProducts();
                 renderProducts();
@@ -351,37 +469,31 @@
             }
         }
 
-        function removeLogo() {
-            companyLogo = '';
-            localStorage.removeItem('nt_company_logo');
-            renderLogo();
-            renderAdminModalContent();
-        }
-
         function renderAdminModalContent() {
             const container = document.getElementById('adminModalContent');
             if(!isLoggedIn) {
                 container.innerHTML = `
-                    <div class="max-w-sm mx-auto py-6">
+                    <div class="max-w-sm mx-auto py-8">
                         <div class="text-center mb-6">
-                            <div class="w-12 h-12 bg-amber-100 text-brand-gold rounded-full flex items-center justify-center mx-auto mb-2 text-xl">
-                                <i class="fa-solid fa-lock"></i>
+                            <div class="w-14 h-14 bg-amber-100 text-brand-gold rounded-2xl flex items-center justify-center mx-auto mb-3 text-2xl shadow-sm">
+                                <i class="fa-solid fa-user-lock"></i>
                             </div>
-                            <h4 class="font-bold text-slate-800 text-lg">Admin Login</h4>
-                            <p class="text-xs text-slate-500">Product o Logo management er jonyo login korun</p>
+                            <h4 class="font-extrabold text-slate-900 text-xl">Admin Authentication</h4>
+                            <p class="text-xs text-slate-500 mt-1">Sign in to manage catalog and upload company logo</p>
                         </div>
-                        <form onsubmit="handleLogin(event)" class="space-y-4">
+                        <form onsubmit="handleAdminLogin(event)" class="space-y-4">
                             <div>
-                                <label class="block text-xs font-semibold text-slate-600 mb-1">Username</label>
-                                <input type="text" id="loginUser" required placeholder="admin" class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/20">
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Username</label>
+                                <input type="text" id="loginUser" required placeholder="admin" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30">
                             </div>
                             <div>
-                                <label class="block text-xs font-semibold text-slate-600 mb-1">Password</label>
-                                <input type="password" id="loginPass" required placeholder="••••••" class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/20">
+                                <label class="block text-xs font-bold text-slate-700 mb-1">Password</label>
+                                <input type="password" id="loginPass" required placeholder="123456" class="w-full px-3.5 py-2.5 border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-blue/30">
                             </div>
-                            <button type="submit" class="w-full bg-brand-blue hover:bg-blue-900 text-white font-bold py-2 rounded-lg text-sm transition">
-                                Login
+                            <button type="submit" class="w-full gold-gradient-bg text-slate-950 font-bold py-3 rounded-xl text-sm shadow-md transition">
+                                Login to Portal
                             </button>
+                            <p class="text-[11px] text-slate-400 text-center mt-2">Default: Username: <b>admin</b> | Password: <b>123456</b></p>
                         </form>
                     </div>
                 `;
@@ -390,14 +502,14 @@
                 products.forEach(p => {
                     tableRows += `
                         <tr class="border-b text-xs">
-                            <td class="py-2 flex items-center gap-2">
-                                <img src="${p.image}" class="w-8 h-8 rounded object-cover">
-                                <span class="font-semibold text-slate-800">${p.title}</span>
+                            <td class="py-2.5 flex items-center gap-2">
+                                <img src="${p.image}" class="w-9 h-9 rounded-lg object-cover">
+                                <span class="font-bold text-slate-800">${p.title}</span>
                             </td>
-                            <td class="py-2 text-slate-600">${p.category}</td>
-                            <td class="py-2 text-right">
-                                <button onclick="deleteProduct(${p.id})" class="text-red-500 hover:text-red-700 p-1">
-                                    <i class="fa-solid fa-trash"></i>
+                            <td class="py-2.5"><span class="bg-slate-100 px-2 py-0.5 rounded text-[10px] font-semibold">${p.category}</span></td>
+                            <td class="py-2.5 text-right">
+                                <button onclick="deleteProduct(${p.id})" class="text-rose-500 hover:text-rose-700 p-1.5">
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </button>
                             </td>
                         </tr>
@@ -405,40 +517,40 @@
                 });
 
                 container.innerHTML = `
-                    <div class="flex justify-between items-center mb-6 pb-2 border-b">
-                        <span class="text-xs font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-full"><i class="fa-solid fa-check-circle"></i> Logged In</span>
-                        <button onclick="handleLogout()" class="text-xs text-red-600 hover:underline font-semibold">
+                    <div class="flex justify-between items-center mb-6 pb-3 border-b border-slate-200">
+                        <span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full"><i class="fa-solid fa-check-circle"></i> Admin Authenticated</span>
+                        <button onclick="handleAdminLogout()" class="text-xs text-rose-600 hover:underline font-bold">
                             <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
                         </button>
                     </div>
 
-                    <!-- Company Logo Upload Section -->
-                    <div class="bg-blue-50/70 p-4 rounded-xl border border-blue-200 mb-6">
+                    <!-- Company Logo Upload -->
+                    <div class="bg-blue-50/80 p-4 rounded-xl border border-blue-200 mb-6">
                         <h4 class="font-bold text-brand-blue text-xs uppercase tracking-wider mb-2">Company Logo Update</h4>
                         <div class="flex items-center gap-4">
-                            <div class="h-20 w-32 bg-white rounded border flex items-center justify-center p-2 overflow-hidden">
+                            <div class="h-20 w-32 bg-white rounded-xl border border-slate-200 flex items-center justify-center p-2 overflow-hidden shadow-sm">
                                 ${companyLogo ? `<img src="${companyLogo}" class="max-h-full max-w-full object-contain">` : `<span class="text-slate-400 text-xs">No Logo</span>`}
                             </div>
                             <div class="flex-1">
-                                <input type="file" accept="image/*" onchange="handleLogoSelect(event)" class="w-full text-xs text-slate-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-brand-blue file:text-white mb-1">
-                                <p class="text-[10px] text-slate-500">PC theke logo image file select korun (PNG/JPG)</p>
+                                <input type="file" accept="image/*" onchange="handleLogoSelect(event)" class="w-full text-xs text-slate-500 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-bold file:bg-brand-blue file:text-white">
+                                <p class="text-[10px] text-slate-500 mt-1">Select company logo image from local PC (PNG/JPG)</p>
                             </div>
-                            ${companyLogo ? `<button onclick="removeLogo()" class="text-xs text-red-500 hover:text-red-700 font-semibold"><i class="fa-solid fa-trash"></i> Reset</button>` : ''}
+                            ${companyLogo ? `<button onclick="removeLogo()" class="text-xs text-rose-600 hover:text-rose-800 font-bold"><i class="fa-solid fa-trash"></i> Reset</button>` : ''}
                         </div>
                     </div>
 
-                    <!-- Add Product Form -->
+                    <!-- Add New Product Form -->
                     <form onsubmit="addProduct(event)" class="bg-slate-50 p-4 rounded-xl border border-slate-200 mb-6 space-y-3">
-                        <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2">Notun Product Jog Korun</h4>
+                        <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2">Add New Wholesale Commodity</h4>
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Product Title *</label>
-                                <input type="text" id="prodTitle" required placeholder="e.g. Pure Milk Powder" class="w-full px-3 py-1.5 border rounded text-xs">
+                                <label class="block text-[11px] font-bold text-slate-700 mb-1">Product Title *</label>
+                                <input type="text" id="prodTitle" required placeholder="e.g. Pure Full Cream Milk Powder" class="w-full px-3 py-2 border rounded-lg text-xs bg-white">
                             </div>
                             <div>
-                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Category *</label>
-                                <select id="prodCategory" class="w-full px-3 py-1.5 border rounded text-xs bg-white">
+                                <label class="block text-[11px] font-bold text-slate-700 mb-1">Category *</label>
+                                <select id="prodCategory" class="w-full px-3 py-2 border rounded-lg text-xs bg-white">
                                     <option value="Milk Powder">Milk Powder</option>
                                     <option value="Tea">Tea</option>
                                     <option value="Mineral Water">Mineral Water</option>
@@ -449,44 +561,44 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                             <div>
-                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Price / MOQ Info *</label>
-                                <input type="text" id="prodPrice" required placeholder="e.g. Tk 4,500 / Bag" class="w-full px-3 py-1.5 border rounded text-xs">
+                                <label class="block text-[11px] font-bold text-slate-700 mb-1">Pricing / MOQ Details *</label>
+                                <input type="text" id="prodPrice" required placeholder="e.g. Tk 4,500 / Bag (Min 5 Bags)" class="w-full px-3 py-2 border rounded-lg text-xs bg-white">
                             </div>
                             <div>
-                                <label class="block text-[11px] font-semibold text-slate-600 mb-1">Upload Product Image (PC/Device)</label>
-                                <input type="file" accept="image/*" onchange="handleImageSelect(event)" class="w-full text-xs text-slate-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-brand-blue file:text-white">
+                                <label class="block text-[11px] font-bold text-slate-700 mb-1">Upload Product Image (PC/Device)</label>
+                                <input type="file" accept="image/*" onchange="handleProductImageSelect(event)" class="w-full text-xs text-slate-500 file:mr-2 file:py-1 file:px-2 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-brand-blue file:text-white">
                             </div>
                         </div>
 
-                        <div id="imagePreviewContainer" class="hidden my-2">
-                            <img id="imagePreview" class="h-16 rounded border object-cover">
+                        <div id="productImagePreviewContainer" class="hidden my-2">
+                            <img id="productImagePreview" class="h-16 rounded border object-cover">
                         </div>
 
                         <div>
-                            <label class="block text-[11px] font-semibold text-slate-600 mb-1">OR Image URL (Optional)</label>
-                            <input type="url" id="prodUrlImage" placeholder="https://..." class="w-full px-3 py-1.5 border rounded text-xs">
+                            <label class="block text-[11px] font-bold text-slate-700 mb-1">OR Image URL (Optional)</label>
+                            <input type="url" id="prodUrlImage" placeholder="https://..." class="w-full px-3 py-2 border rounded-lg text-xs bg-white">
                         </div>
 
                         <div>
-                            <label class="block text-[11px] font-semibold text-slate-600 mb-1">Description *</label>
-                            <textarea id="prodDesc" required rows="2" placeholder="Product er biboron..." class="w-full px-3 py-1.5 border rounded text-xs"></textarea>
+                            <label class="block text-[11px] font-bold text-slate-700 mb-1">Product Description *</label>
+                            <textarea id="prodDesc" required rows="2" placeholder="Describe commodity specifications..." class="w-full px-3 py-2 border rounded-lg text-xs bg-white"></textarea>
                         </div>
 
-                        <button type="submit" class="w-full bg-brand-gold hover:bg-amber-600 text-white font-bold py-2 rounded text-xs transition shadow-sm">
-                            Publish Product
+                        <button type="submit" class="w-full gold-gradient-bg text-slate-950 font-extrabold py-2.5 rounded-lg text-xs transition shadow-sm">
+                            Publish Commodity to Catalog
                         </button>
                     </form>
 
-                    <!-- Existing Products List -->
+                    <!-- Catalog Table -->
                     <div>
-                        <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2">Bortoman Product List</h4>
-                        <div class="overflow-x-auto">
+                        <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider mb-2">Live Products Inventory</h4>
+                        <div class="overflow-x-auto border border-slate-200 rounded-xl">
                             <table class="w-full text-left border-collapse">
                                 <thead>
-                                    <tr class="border-b text-[11px] text-slate-400">
-                                        <th class="py-1">Title</th>
-                                        <th class="py-1">Category</th>
-                                        <th class="py-1 text-right">Action</th>
+                                    <tr class="bg-slate-100 border-b text-[11px] text-slate-500 font-bold">
+                                        <th class="p-2.5">Item</th>
+                                        <th class="p-2.5">Category</th>
+                                        <th class="p-2.5 text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -500,8 +612,10 @@
         }
 
         // Initialize App
-        renderLogo();
-        renderProducts();
+        window.onload = function() {
+            renderLogo();
+            renderProducts();
+        };
     </script>
 </body>
 </html>
